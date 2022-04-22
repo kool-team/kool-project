@@ -1,0 +1,92 @@
+CREATE TABLE discount(
+id int primary KEY not null AUTO_INCREMENT,
+    name varchar(100),
+    description text ,
+    discount_percent decimal,
+    created_at timestamp,
+    modified_at timestamp 
+)
+CREATE TABLE product(
+	id int primary KEY not null AUTO_INCREMENT,
+    	name varchar(100),
+    	description text ,
+    	categorie varchar(100),
+	price decimal, 
+	discount_id int,
+    	created_at timestamp,
+    	modified_at timestamp 
+)
+alter TABLE product add CONSTRAINT fk_discid FOREIGN key (discount_id) REFERENCES discount(id)
+CREATE TABLE users (
+	id int primary KEY not null AUTO_INCREMENT,
+    	username varchar(100),
+    	password text ,
+   	 	first_name varchar(100),
+    	last_name varchar(100),
+    	address varchar(100),
+    	telephone varchar(10),
+    permission varchar(100) default "user",
+    	created_at timestamp,
+    	modified_at timestamp 
+)
+CREATE TABLE shopping_sessions (
+	id int primary KEY not null AUTO_INCREMENT,
+    	user_id varchar(100) ,
+    total decimal,
+    	created_at timestamp,
+    	modified_at timestamp ,
+     CONSTRAINT fk_prod_discount
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+)
+CREATE TABLE cart_item (
+	id int primary KEY not null AUTO_INCREMENT,
+    	session_id varchar(100) ,
+    product_id varchar(100) ,
+   quantity int,
+    	created_at timestamp,
+    	modified_at timestamp ,
+     CONSTRAINT fk_1
+        FOREIGN KEY (product_id)
+        REFERENCES product(id),
+     CONSTRAINT fk_2
+        FOREIGN KEY (session_id)
+        REFERENCES shopping_sessions(id)
+)
+CREATE TABLE payment_details (
+	id int primary KEY not null AUTO_INCREMENT,
+    	order_id varchar(100) ,
+    amount varchar(100) ,
+   status varchar(100),
+    	created_at timestamp,
+    	modified_at timestamp 
+    
+)
+CREATE TABLE order_details (
+	id int primary KEY not null AUTO_INCREMENT,
+    	user_id varchar(100) ,
+    total decimal ,
+    payment_id int ,
+    	created_at timestamp,
+    	modified_at timestamp ,
+     CONSTRAINT fk_1
+        FOREIGN KEY (payment_id)
+        REFERENCES payment_details(id),
+     CONSTRAINT fk_2
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+)
+CREATE TABLE order_items (
+	id int primary KEY not null AUTO_INCREMENT,
+    	order_id varchar(100) ,
+    product_id varchar(100),
+   
+    	created_at timestamp,
+    	modified_at timestamp ,
+     CONSTRAINT fk_1
+        FOREIGN KEY (order_id)
+        REFERENCES order_details(id),
+     CONSTRAINT fk_2
+        FOREIGN KEY (product_id)
+        REFERENCES product(id)
+)

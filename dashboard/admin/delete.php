@@ -7,7 +7,7 @@
         $result = mysqli_query($con,$sql);
 
         if($result){
-            header('location:tables.php');
+            header('location:stock.php');
         }else{
             die(mysqli_error($con));
         }

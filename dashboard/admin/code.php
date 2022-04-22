@@ -25,7 +25,7 @@
         }
     }
 
-    if(isset($_POST['registerbtn'])){
+    if(isset($_POST['ajoutProduit'])){
         $ref_produit = $_POST['ref_produit'];
         $description = $_POST['description'];
         $stock_initial = $_POST['stock_initial'];
@@ -37,7 +37,7 @@
         $query_run = mysqli_query($con,$query);
 
         if($query_run ){
-            header('location:tables.php');
+            header('location:stock.php');
           }else{
             die(mysqli_error($con));
           }
