@@ -26,7 +26,7 @@
             $result = mysqli_query($con,$sql);
         
             if($result){
-              header('location:stock.php');
+              header('location:tables.php');
             }else{
               die(mysqli_error($con));
             }

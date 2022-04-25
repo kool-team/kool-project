@@ -8,7 +8,7 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $query = "SELECT * FROM admins WHERE email='$email' AND password='$password'";
+        $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
         $query_run = mysqli_query($con,$query);
         $row = mysqli_fetch_assoc($query_run);
         if($row['permission'] === 'admin'){
@@ -16,8 +16,24 @@
             header('Location:index.php');
         }
         else if($row['permission'] === 'user'){
-            $_SESSION['username_user'] = $_POST['email'];
-            header('Location:home.php');
+            $_SESSION['email'] = $_POST['email'];
+            $sql = "SELECT id FROM users WHERE email = '$email'";
+            $result = mysqli_query($con,$sql);
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            //session[user id] a changer;
+            $_SESSION['id'] = $row['id'];
+
+            //add user_id to shopping_sessions
+            $user_id = $row['id'];
+            $sql = "INSERT INTO shopping_sessions (user_id) VALUES($user_id)";
+            $rseult = mysqli_query($con,$sql);
+
+            
+            $sql = "SELECT id FROM shopping_sessions WHERE user_id = $user_id";
+            $rseult = mysqli_query($con,$sql);
+            $row = mysqli_fetch_array($rseult);
+            $_SESSION['session_id'] = $row['id'];
+            header('Location:../../indexprofil.php');
         }
         else{
             $_SESSION['status'] = 'userName or Password is incorrect';
@@ -25,7 +41,7 @@
         }
     }
 
-    if(isset($_POST['ajoutProduit'])){
+    if(isset($_POST['registerbtn'])){
         $ref_produit = $_POST['ref_produit'];
         $description = $_POST['description'];
         $stock_initial = $_POST['stock_initial'];
@@ -37,7 +53,7 @@
         $query_run = mysqli_query($con,$query);
 
         if($query_run ){
-            header('location:stock.php');
+            header('location:tables.php');
           }else{
             die(mysqli_error($con));
           }

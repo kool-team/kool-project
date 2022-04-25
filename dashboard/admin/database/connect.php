@@ -1,7 +1,7 @@
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 <?php
-    $con = new mysqli('localhost','root','Omar@0674');
-    $dbconfig = mysqli_select_db($con,'admin');
+    $con = new mysqli('localhost','root','');
+    $dbconfig = mysqli_select_db($con,'kool_db');
 
     if($dbconfig){
         //dataBase connected succeffly

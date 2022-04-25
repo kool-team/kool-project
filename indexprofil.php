@@ -1,3 +1,8 @@
+<?php 
+session_start();
+$_SESSION['iscardempty']=true;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,16 +36,22 @@
             <a style="text-decoration: none" href="javascript:showcat();" href="#head">categories</a>
             <a style="text-decoration: none" href="#about">about</a>
             <a style="text-decoration: none" href="#stat">our stat</a>
+            <a style="text-decoration: none" href="pages/cart/index.php" target="_blank"
+                class="fas fa-shopping-cart"></a>
             <!-- <a href="#order">order</a>  -->
         </nav>
 
-        <div class="icons">
-            <i class="fas fa-bars" id="menu-bars"></i>
-            <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-            <a style="text-decoration: none" href="pages/cart/index.php" target="_blank"
-                class="fas fa-shopping-cart"></a>
-            <a style="text-decoration: none" href="pages/login/login.php" target="_blank"><i class="fas fa-user"
-                    title="utilisateur"></i></a>
+        <div class="dropdown">
+            <button class="btn btn-secondary " type="button" id="dropdownMenuButton" aria-haspopup="true"
+                data-toggle="dropdown" aria-expanded="false">
+                D
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="logout.php/?demo=true">logout</a>
+            </div>
+        </div>
         </div>
     </header>
 
