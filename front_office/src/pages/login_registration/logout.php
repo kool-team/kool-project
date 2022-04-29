@@ -12,7 +12,7 @@ if($_GET['demo']==true){
     $query = "DELETE  FROM cart_item where session_id=$session  ";
     $result = mysqli_query($con,$query);
 session_unset();
-header('location:../index.php');
+header('location:../../../../index.php');
 }
 
 

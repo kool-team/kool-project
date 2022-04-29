@@ -1,19 +1,16 @@
 <?php
      session_start();
      $con = new mysqli('localhost','root','');
-    $dbconfig = mysqli_select_db($con,'kool_db');
-$_SESSION['iscardempty']=false;
+     $dbconfig = mysqli_select_db($con,'kool_db');
+     $_SESSION['iscardempty']=false;
    
    
 
-    if(isset($_POST['prod_name'])){
-        $prod_name = $_POST['prod_name'];
-        $sql = "SELECT id FROM product WHERE name = '$prod_name'";
-        $result = mysqli_query($con,$sql);
-        $row = mysqli_fetch_array($result);
+    if(isset($_POST['prod_id'])){
+        
 
         $session_id = $_SESSION['session_id'];//session_id
-        $product_id = $row['id']; //product_id
+        $product_id = $_POST['prod_id']; //product_id
         
         $sql = "SELECT quantity FROM cart_item WHERE product_id = $product_id and session_id=$session_id";
         $result = mysqli_query($con,$sql);

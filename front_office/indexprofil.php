@@ -1,7 +1,7 @@
 <?php 
 session_start();
 $_SESSION['iscardempty']=true;
-
+include "../dashboard/admin/database/connect.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,7 @@ $_SESSION['iscardempty']=true;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="src/css/style.css">
 </head>
 
 <body>
@@ -30,18 +30,32 @@ $_SESSION['iscardempty']=true;
         <a style="text-decoration: none" href="index.html" class="logo"><i class="fas fa-hamburger"></i> K O O L</a>
 
         <nav class="navbar">
-            <a style="text-decoration: none" class="active" href="#home">home</a>
-            <a style="text-decoration: none" href="#dishes">dishes</a>
+            <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" class="active"
+                href="#home">home</a>
+            <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#dishes">dishes</a>
 
-            <a style="text-decoration: none" href="javascript:showcat();" href="#head">categories</a>
-            <a style="text-decoration: none" href="#about">about</a>
-            <a style="text-decoration: none" href="#stat">our stat</a>
-            <a style="text-decoration: none" href="pages/cart/index.php" target="_blank"
+            <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');"
+                href="javascript:showcat();" href="#head">categories</a>
+            <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#about">about</a>
+            <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#stat">our stat</a>
+            <a style="text-decoration: none" href="src/pages/shooping_card/index.php" target="_blank"
                 class="fas fa-shopping-cart"></a>
             <!-- <a href="#order">order</a>  -->
         </nav>
-
-        <div class="dropdown">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle user-action"><img
+                        src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="avatar" alt="Avatar">
+                    Paula Wilson <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="fa fa-user-o"></i> Profile</a></li>
+                    <li><a href="#"><i class="fa fa-calendar-o"></i> Calendar</a></li>
+                    <li><a href="#"><i class="fa fa-sliders"></i> Settings</a></li>
+                    <li class="divider"></li>
+                    <li><a href="src/pages/login_registration/logout.php/?demo=true"><i
+                                class="material-icons">&#xE8AC;</i> Logout</a></li>
+                </ul>
+                <!-- <div class="dropdown">
             <button class="btn btn-secondary " type="button" id="dropdownMenuButton" aria-haspopup="true"
                 data-toggle="dropdown" aria-expanded="false">
                 D
@@ -52,7 +66,7 @@ $_SESSION['iscardempty']=true;
                 <a class="dropdown-item" href="logout.php/?demo=true">logout</a>
             </div>
         </div>
-        </div>
+        </div> -->
     </header>
 
     <!-- header section ends-->
@@ -88,7 +102,7 @@ $_SESSION['iscardempty']=true;
                         <a href="#" class="btn">order now</a>
                     </div>
                     <div class="image">
-                        <img src="images/home-img-1.png" alt="" />
+                        <img src="src/images/home-img-1.png" alt="" />
                     </div>
                 </div>
 
@@ -103,7 +117,7 @@ $_SESSION['iscardempty']=true;
                         <a href="#" class="btn">order now</a>
                     </div>
                     <div class="image">
-                        <img src="images/home-img-2.png" alt="" />
+                        <img src="src/images/home-img-2.png" alt="" />
                     </div>
                 </div>
 
@@ -118,7 +132,7 @@ $_SESSION['iscardempty']=true;
                         <a href="#" class="btn">order now</a>
                     </div>
                     <div class="image">
-                        <img src="images/home-img-3.png" alt="" />
+                        <img src="src/images/home-img-3.png" alt="" />
                     </div>
                 </div>
             </div>
@@ -132,7 +146,8 @@ $_SESSION['iscardempty']=true;
     <script>
     function f(a) {
         document.getElementById('temp').innerHTML = a;
-        console.log(a);
+        //console.log(a);
+        alert('Product added');
         return;
     }
     </script>
@@ -141,11 +156,19 @@ $_SESSION['iscardempty']=true;
         <h1 class="heading">popular dishes</h1>
 
         <div class="box-container">
+        <?php
+                $sql = "SELECT * FROM product";
+                $result = mysqli_query($con,$sql);
+
+                while($row = mysqli_fetch_assoc($result)){
+
+                
+            ?>
             <div class="box">
                 <a style="text-decoration: none" href="" class="fas fa-heart"></a>
                 <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-1.png" alt="" />
-                <h3>PIZZA HUT</h3>
+                <img src="<?php echo "../dashboard/admin/upload/".$row['img'];?>" alt="" />
+                <h3><?php echo $row['name'];?></h3>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -153,135 +176,13 @@ $_SESSION['iscardempty']=true;
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-                <button style="text-decoration: none" class="btn" onclick="javascript:f('PIZZA HUT SMALL')">add to
+                <button style="text-decoration: none" class="btn" onclick="f(<?php echo $row['id'];?>)">add to
                     cart</button>
-                <span style="position: relative; top: 10px">$15.99</span>
-            </div>
-
-            <div class="box">
-                <a style="text-decoration: none" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-2.png" alt="" />
-                <h3>burger</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <button style="text-decoration: none" class="btn " onclick="javascript:f('burger')">add to cart</button>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-3.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <button style="text-decoration: none" class="btn" onclick="javascript:f('tacos')">add to cart</button>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-6.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a style="text-decoration: none" href="#" class="btn">add to cart</a>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-4.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">add to cart</a>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-2.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a style="text-decoration: none" href="#" class="btn">add to cart</a>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-5.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a style="text-decoration: none" href="#" class="btn">add to cart</a>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-3.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a style="text-decoration: none" href="#" class="btn">add to cart</a>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-6.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a style="text-decoration: none" href="#" class="btn">add to cart</a>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
+                <span style="position: relative; top: 10px"><?php echo $row['price'];?>$</span>
+            </div> 
+            <?php
+                }
+            ?>
         </div>
     </section>
 
@@ -294,7 +195,7 @@ $_SESSION['iscardempty']=true;
 
         <div class="row">
             <div class="image">
-                <img src="images/about-img.png" alt="" />
+                <img src="src/images/about-img.png" alt="" />
             </div>
 
             <div class="content">
@@ -446,7 +347,7 @@ $_SESSION['iscardempty']=true;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <!-- custom js file link  -->
-    <script src="js/script.js"></script>
+    <script src="src/js/script.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -458,7 +359,7 @@ $_SESSION['iscardempty']=true;
                 method: "POST",
                 url: "fonction.php",
                 data: {
-                    prod_name: document.getElementById('temp').innerHTML
+                    prod_id: document.getElementById('temp').innerHTML
                 },
                 beforeSend: function(xhr) {
 

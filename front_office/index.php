@@ -1,10 +1,12 @@
+<?php
+    include "../dashboard/admin/database/connect.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="Free Website Code, freewebsitecode.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KOOL</title>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
@@ -15,32 +17,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="src/css/style.css">
 </head>
 
 <body>
     <!-- header section starts      -->
 
     <header>
-        <a style="text-decoration: none" href="index.html" class="logo"><i class="fas fa-hamburger"></i> K O O L</a>
+        <a style="text-decoration: none" href="index.php" class="logo"><i class="fas fa-hamburger"></i> K O O L</a>
 
         <nav class="navbar">
-            <a style="text-decoration: none" class="active" href="#home">home</a>
-            <a style="text-decoration: none" href="#dishes">dishes</a>
+            <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" class="active "
+                href="#home">home</a>
+            <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#dishes">dishes</a>
 
-            <a style="text-decoration: none" href="javascript:showcat();" href="#head">categories</a>
-            <a style="text-decoration: none" href="#about">about</a>
-            <a style="text-decoration: none" href="#stat">our stat</a>
+            <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');"
+                href="javascript:showcat();" href="#head">categories</a>
+            <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#about">about</a>
+            <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" class="5 inactive"
+                href="#stat">our stat</a>
             <!-- <a href="#order">order</a>  -->
         </nav>
 
         <div class="icons">
             <i class="fas fa-bars" id="menu-bars"></i>
-            <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-            <a style="text-decoration: none" href="pages/cart/index.php" target="_blank"
+            
+            <a style="text-decoration: none" href="src/pages/shooping_card/index.php" target="_blank"
                 class="fas fa-shopping-cart"></a>
-            <a style="text-decoration: none" href="pages/login/login.php" target="_blank"><i class="fas fa-user"
-                    title="utilisateur"></i></a>
+            <a style="text-decoration: none" href="src/pages/login_registration/login.php" target="_blank"><i
+                    class="fas fa-user" title="utilisateur"></i></a>
         </div>
     </header>
 
@@ -77,7 +82,7 @@
                         <a href="#" class="btn">order now</a>
                     </div>
                     <div class="image">
-                        <img src="images/home-img-1.png" alt="" />
+                        <img src="src/images/home-img-1.png" alt="" />
                     </div>
                 </div>
 
@@ -92,7 +97,7 @@
                         <a href="#" class="btn">order now</a>
                     </div>
                     <div class="image">
-                        <img src="images/home-img-2.png" alt="" />
+                        <img src="src/images/home-img-2.png" alt="" />
                     </div>
                 </div>
 
@@ -107,7 +112,7 @@
                         <a href="#" class="btn">order now</a>
                     </div>
                     <div class="image">
-                        <img src="images/home-img-3.png" alt="" />
+                        <img src="src/images/home-img-3.png" alt="" />
                     </div>
                 </div>
             </div>
@@ -130,11 +135,19 @@
         <h1 class="heading">popular dishes</h1>
 
         <div class="box-container">
+            <?php
+                $sql = "SELECT * FROM product";
+                $result = mysqli_query($con,$sql);
+
+                while($row = mysqli_fetch_assoc($result)){
+
+                
+            ?>
             <div class="box">
                 <a style="text-decoration: none" href="" class="fas fa-heart"></a>
                 <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-1.png" alt="" />
-                <h3>PIZZA HUT</h3>
+                <img src="<?php echo "../dashboard/admin/upload/".$row['img'];?>" alt="" />
+                <h3><?php echo $row['name'];?></h3>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -142,135 +155,14 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-                <button style="text-decoration: none" class="btn" onclick="javascript:f('PIZZA HUT SMALL')">add to
+                <button style="text-decoration: none" class="btn" onclick="javascript:f(<?php echo $row['name']?>)">add to
                     cart</button>
-                <span style="position: relative; top: 10px">$15.99</span>
-            </div>
-
-            <div class="box">
-                <a style="text-decoration: none" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-2.png" alt="" />
-                <h3>burger</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <button style="text-decoration: none" class="btn " onclick="javascript:f('burger')">add to cart</button>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-3.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <button style="text-decoration: none" class="btn" onclick="javascript:f('tacos')">add to cart</button>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-6.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a style="text-decoration: none" href="#" class="btn">add to cart</a>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-4.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">add to cart</a>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-2.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a style="text-decoration: none" href="#" class="btn">add to cart</a>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-5.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a style="text-decoration: none" href="#" class="btn">add to cart</a>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-3.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a style="text-decoration: none" href="#" class="btn">add to cart</a>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
-            <div class="box">
-                <a style="text-decoration: none" href="#" class="fas fa-heart"></a>
-                <a style="text-decoration: none" href="#" class="fas fa-eye"></a>
-                <img src="images/dish-6.png" alt="" />
-                <h3>tasty food</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a style="text-decoration: none" href="#" class="btn">add to cart</a>
-                <span style="position: relative; top: 6px">$15.99</span>
-            </div>
+                <span style="position: relative; top: 10px"><?php echo $row['price'];?>$</span>
+            </div> 
+            <?php
+                }
+            ?>
+            
         </div>
     </section>
 
@@ -283,7 +175,7 @@
 
         <div class="row">
             <div class="image">
-                <img src="images/about-img.png" alt="" />
+                <img src="src/images/about-img.png" alt="" />
             </div>
 
             <div class="content">
@@ -435,7 +327,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <!-- custom js file link  -->
-    <script src="js/script.js"></script>
+    <script src="src/js/script.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -466,18 +358,12 @@
         })
     })
     </script>
-    <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-       funtion sweetalertclick(){
-   Swal.fire({
-    position: 'top-end',
-    icon: 'success',
-    title: 'added to your card',
-    showConfirmButton: false,
-    timer: 1500
-  })
-}
-    </script> -->
+    function active() {
+        const i = document.querySelector('.active');
+        i.classList.remove("active");
+    }
+    </script>
 </body>
 
 </html>

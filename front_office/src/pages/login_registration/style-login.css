@@ -99,7 +99,6 @@ body {
   transition: all 0.2s ease;
 }
 
-
 .input-field input:is(:focus, :valid) {
   border-bottom-color: #ffd310;
 }
@@ -113,7 +112,7 @@ body {
   transition: all 0.2s ease;
 }
 
-.input-field input:is(:focus, :valid)~i {
+.input-field input:is(:focus, :valid) ~ i {
   color: #ffd310;
 }
 

@@ -31,94 +31,88 @@
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="code.php" method="POST">
+                        <form action="code.php" method="POST" enctype='multipart/form-data'>
 
                             <div class="modal-body">
 
                                 <div class="form-group">
-                                    <label> Référence de produit </label>
-                                    <input type="text" name="ref_produit" class="form-control" placeholder="Entrer la Référence de produit">
+                                    <label>Nom de produit </label>
+                                    <input type="text" name="prod_name" class="form-control" placeholder="Entrer Le nom de produit" required>
                                 </div>
                                 <div class="form-group">
-                                    <label> Description </label>
-                                    <input type="text" name="description" class="form-control" placeholder="Description de produit">
+                                    <label>Description </label>
+                                    <input type="text" name="description" class="form-control" placeholder="Description de produit" required>
                                 </div>
                                 <div class="form-group">
-                                    <label> Stock initial </label>
-                                    <input type="text" name="stock_initial" class="form-control" placeholder="Entrer le stock initail">
+                                    <label>Categorie </label>
+                                    <input type="text" name="categorie" class="form-control" placeholder="Entrer de produit" required>
                                 </div>
                                 <div class="form-group">
-                                    <label> Somme des entrés </label>
-                                    <input type="text" name="somme_entres" class="form-control" placeholder="Entrer la somme des entrés">
+                                    <label>Prix </label>
+                                    <input type="text" name="price" class="form-control" placeholder="Entrer prix de produit" required>
                                 </div>
                                 <div class="form-group">
-                                    <label> Somme des sorties </label>
-                                    <input type="text" name="somme_sorties" class="form-control" placeholder="Entrer la somme des sorties">
+                                    <label>Ajouter l'image de produit </label>
+                                    <input type="file" name="product_image" id="product_image" class="form-control" required>
                                 </div>
-                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" name="registerbtn" class="btn btn-primary">Save</button>
+                                <button type="submit" name="add_product_btn" class="btn btn-primary">Save</button>
                             </div>
                         </form>
 
                         </div>
                     </div>
-                    </div>
-
-                   
+                    </div>                   
 
                     <!-- End "Ajouter un produit" Moadl -->
 
                         <div class="card-body">
+                            <?php
+                               if(isset($_SESSION['status']) && $_SESSION['status'] != ""){
+                                    echo '<h2 class="bg-danger text_white">'.$_SESSION['status'].'</h2>';
+                                    unset($_SESSION['status']);
+                                }
+                            ?>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Référence de prodit</th>
+                                            <th>Nom de produit</th>
                                             <th>Description</th>
-                                            <th>Stock initial</th>
-                                            <th>Somme des entrées</th>
-                                            <th>Somme des sorties</th>
-                                            <th>Stock Final</th>
-                                            <th>Update</th>
-                                            <th>Delete</th>
+                                            <th>Categorie</th>
+                                            <th>Prix</th>  
+                                            <th>Image</th>
+                                            <th>Modifier</th>
+                                            <th>Supprimer</th>
                                         </tr>
                                     </thead>
-                                   
                                     <tbody>
                                         <?php
-                                            $query = "select * from stock";
-                                            $query_run = mysqli_query($con,$query );
-
-                                            if($query_run){
-                                                while($row = mysqli_fetch_assoc($query_run)){
-                                                    $ref_produit = $row['ref_produit'];
-                                                    $description = $row['description'];
-                                                    $stock_initial = $row['stock_initial'];
-                                                    $somme_entres = $row['somme_entres'];
-                                                    $somme_sorties = $row['somme_sorties'];
-                                                    $stock_final = $row['stock_final'];
-                                                    echo '
-                                                    <tr>
-                                                    <td>'.$ref_produit.'</td>
-                                                    <td>'.$description.'</td>
-                                                    <td>'.$stock_initial.'</td>
-                                                    <td>'.$somme_entres.'</td>
-                                                    <td>'.$somme_sorties.'</td>
-                                                    <td>'.$stock_final.'</td>
-                                                    <td>
-                                                        <button class="btn btn-primary"><a href="update.php?updateid='.$ref_produit.'" class="text-light">Update</a></button>
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-danger"><a href="delete.php?deleteid='.$ref_produit.'" class="text-light">Delete</a></button>  
-                                                    </td>
-                                                </tr>
-                                                    ';
+                                             $query = "select * from product";
+                                             $query_run = mysqli_query($con,$query);
+ 
+                                             if($query_run){
+                                                 while($row = mysqli_fetch_assoc($query_run)){
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $row['name'];?></td>
+                                            <td><?php echo $row['description'];?></td>
+                                            <td><?php echo $row['categorie'];?></td>
+                                            <td><?php echo $row['price'];?></td>
+                                            <td><img src="<?php echo "upload/".$row['img'];?>" width="100px" height="100px" alt=""></td>
+                                            <td>
+                                                <button class="btn btn-primary"><a href="update_product.php?updateid=<?php echo $row['id']?>" class="text-light">Update</a></button>
+                                            </td>
+                                            <td>
+                                                 <button class="btn btn-danger"><a href="delete_product.php?deleteid=<?php echo $row['id']?>" class="text-light">Delete</a></button>  
+                                            </td>
+                                        </tr>
+                                        <?php
+                                                 }
                                                 }
-                                            }
-      ?>
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

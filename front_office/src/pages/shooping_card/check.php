@@ -20,6 +20,6 @@ if(isset($_POST['checkout'])){
     $result1=mysqli_query($con,$query);
     }
 
-    header('location:../../indexprofil.php');    
+    header('location:../../../indexprofil.php');    
 }
 ?>

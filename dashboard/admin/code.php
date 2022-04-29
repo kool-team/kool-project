@@ -33,34 +33,39 @@
             $rseult = mysqli_query($con,$sql);
             $row = mysqli_fetch_array($rseult);
             $_SESSION['session_id'] = $row['id'];
-            header('Location:../../indexprofil.php');
+            header('Location:../../front_office/indexprofil.php');
         }
         else{
             $_SESSION['status'] = 'userName or Password is incorrect';
-            header('location:../../pages/login/login.php');
+            header('location:../../front_office/src/pages/login_registration/login.php');
         }
     }
 
-    if(isset($_POST['registerbtn'])){
-        $ref_produit = $_POST['ref_produit'];
+    if(isset($_POST['add_product_btn'])){
+        $prod_name = $_POST['prod_name'];
         $description = $_POST['description'];
-        $stock_initial = $_POST['stock_initial'];
-        $somme_entres = $_POST['somme_entres'];
-        $somme_sorties = $_POST['somme_sorties'];
-        $stock_final = $stock_initial + $somme_entres - $somme_sorties;
+        $categorie = $_POST['categorie'];
+        $price = $_POST['price'];
+        $image = $_FILES['product_image']['name'];
 
-        $query = "INSERT INTO stock VALUES('$ref_produit','$description',$stock_initial,$somme_entres,$somme_sorties,$stock_final)";
-        $query_run = mysqli_query($con,$query);
+        if(file_exists("upload/".$_FILES['product_image']['name'])){
+            $image = $_FILES['product_image']['name'];
+            $_SESSION['status'] = "Image already exists".$image;
+            header('location:stock.php');
+        }else{
+            $query = "INSERT INTO product (name,description,categorie,price,img) VALUES('$prod_name','$description','$categorie',$price,'$image')";
+            $query_run = mysqli_query($con,$query);
 
-        if($query_run ){
-            header('location:tables.php');
-          }else{
-            die(mysqli_error($con));
-          }
-    }else{
-        die(mysqli_error($con));
+            if($query_run){
+                move_uploaded_file($_FILES['product_image']['tmp_name'],"upload/".$_FILES['product_image']['name']);
+                $_SESSION['success'] = "Product added";
+                header('location:stock.php');
+            }else{
+                die(mysqli_error($con));
+            }
+            
+        }
     }
-
    
       
 ?>
