@@ -27,21 +27,22 @@ include "../dashboard/admin/database/connect.php";
     <!-- header section starts      -->
 
     <header>
-        <a style="text-decoration: none" href="indexprofil.php" class="logo" ><i class="fas fa-hamburger"></i> K O O L</a>
+        <a style="text-decoration: none" href="indexprofil.php" class="logo"><i class="fas fa-hamburger"></i> K O O
+            L</a>
 
         <nav class="navbar" style="margin-left: 20rem;">
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" class="active"
                 href="#home">home</a>
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#dishes">dishes</a>
 
-           
+
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#about">about</a>
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#stat">our stat</a>
-            <a style="text-decoration: none ;margin-left: 9rem;" href="src/pages/shooping_card/index.php" 
+            <a style="text-decoration: none ;margin-left: 9rem;" href="src/pages/shooping_card/index.php"
                 class="fas fa-shopping-cart"></a>
             <!-- <a href="#order">order</a>  -->
 
-            
+
         </nav>
         <!-- <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -57,21 +58,20 @@ include "../dashboard/admin/database/connect.php";
                                 class="material-icons">&#xE8AC;</i> Logout</a></li>
                 </ul> -->
 
-                <ul class="navbar-nav ml-auto">
-            
+        <ul class="navbar-nav ml-auto">
+
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" style="color: #666;font-size: 1rem;" href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" style="color: #666;font-size: 1rem;" href="#" id="userDropdown"
+                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php
                         echo $_SESSION['email'];
                     ?>
-                    <img class="img-profile rounded-circle"
-                        src="../dashboard/admin/img/undraw_profile.svg" style="width:40px;height:40px;">
+                    <img class="img-profile rounded-circle" src="../dashboard/admin/img/undraw_profile.svg"
+                        style="width:40px;height:40px;">
                 </a>
                 <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    aria-labelledby="userDropdown">
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="#">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                         Profile
@@ -85,7 +85,7 @@ include "../dashboard/admin/database/connect.php";
                         Activity Log
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="src/pages/login_registration/logout.php/?demo=true" >
+                    <a class="dropdown-item" href="src/pages/login_registration/logout.php/?demo=true">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Logout
                     </a>
@@ -94,8 +94,8 @@ include "../dashboard/admin/database/connect.php";
 
         </ul>
 
-                
-              
+
+
     </header>
 
     <!-- header section ends-->
@@ -176,7 +176,13 @@ include "../dashboard/admin/database/connect.php";
     function f(a) {
         document.getElementById('temp').innerHTML = a;
         //console.log(a);
-        alert('Product added');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Product saved',
+            showConfirmButton: false,
+            timer: 1500
+        })
         return;
     }
     </script>
@@ -185,7 +191,7 @@ include "../dashboard/admin/database/connect.php";
         <h1 class="heading">popular dishes</h1>
 
         <div class="box-container">
-        <?php
+            <?php
                 $sql = "SELECT * FROM product";
                 $result = mysqli_query($con,$sql);
 
@@ -208,7 +214,7 @@ include "../dashboard/admin/database/connect.php";
                 <button style="text-decoration: none" class="btn" onclick="f(<?php echo $row['id'];?>)">add to
                     cart</button>
                 <span style="position: relative; top: 10px"><?php echo $row['price'];?>$</span>
-            </div> 
+            </div>
             <?php
                 }
             ?>
@@ -365,7 +371,8 @@ include "../dashboard/admin/database/connect.php";
         </div>
     </section>
     <br /><br />
-
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
