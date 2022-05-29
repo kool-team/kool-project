@@ -6,8 +6,7 @@ $user_id=$_SESSION['id'];
 $total=$_SESSION['total'];
 $session_id=$_SESSION['session_id'];
 if(isset($_POST['checkout'])){
-    $query="INSERT INTO order_details(user_id,total) values ($user_id,$total)";
-    $result=mysqli_query($con,$query);
+    $query="INSERT INTO order_details(user_id,total,created_at) values ($user_id,$total,date(Y-m-d)";    $result=mysqli_query($con,$query);
     $query="SELECT id FROM order_details ORDER BY id DESC LIMIT 1";
     $result=mysqli_query($con,$query);
     $row=mysqli_fetch_array($result);
