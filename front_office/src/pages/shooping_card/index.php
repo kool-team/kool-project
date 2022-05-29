@@ -137,9 +137,23 @@ $isempty=$_SESSION['iscardempty'];}
                                 <div class="total-amount">'.$somme .'$</div>
                             </div>
                         
-                            <form action="check.php" method="POST">
-                                <button class="button" type="submit" name="checkout">Checkout</button>
+                            <form id="container" action="check.php" method="post"></form>
+                            <script async
+                              src="https://pay.google.com/gp/p/js/pay.js"
+                              onload="onGooglePayLoaded()"></script>
+
+                            <form class="paypal" action="paypal/payments.php" method="post" id="paypal_form">
+                            <input type="hidden" name="cmd" value="_xclick" />
+                            <input type="hidden" name="no_note" value="1" />
+                            <input type="hidden" name="lc" value="UK" />
+                            <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
+                            <input type="hidden" name="first_name" value="Customer\'s First Name" />
+                            <input type="hidden" name="last_name" value="Customer\'s Last Name" />
+                            <input type="hidden" name="payer_email" value="customer@example.com" />
+                            <input type="hidden" name="item_number" value="123456" />
+                            <button type="submit" name="submit"  style="width:240px; height:40px; background-color:lightskyblue;font-weight:bold;border-radius: 4px;"><img src="paypal.png" style="height:20px;width:20px">  Buy with PayPal</button>
                             </form>
+
                         </div>'
                         ;}}?>
         </div>
