@@ -126,13 +126,8 @@
         document.getElementById('temp').innerHTML = a;
         console.log(a);
         Swal.fire({
-<<<<<<< HEAD
             title: 'Ooops!',
             text: 'Should get connected .',
-=======
-            title: 'Sweet!',
-            text: 'Please get connected .',
->>>>>>> d13f047b7ea593b6945124688be0ab3178e04fa2
             imageUrl: 'https://unsplash.it/400/200',
             imageWidth: 400,
             imageHeight: 200,
