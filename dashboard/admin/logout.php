@@ -4,6 +4,6 @@
     if(isset($_POST['logout_btn'])){
         unset($_SESSION['username']);
         session_destroy(); 
-        header('location:../../index.php');
+        header('location:../../front_office/index.php');
     }
 ?>

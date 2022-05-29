@@ -66,6 +66,20 @@
             
         }
     }
+
+    if(isset($_POST['signUpBtn'])){
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $confirmPassword = $_POST['confirmPassword'];
+        
+        if($password === $confirmPassword){
+            $query = "INSERT INTO users (email,password,first_name) VALUES('$email','$password','$name')";
+            $result = mysqli_query($con,$query);
+            header('location:../../front_office/src/pages/login_registration/login.php');
+        }
+        
+    }
    
       
 ?>

@@ -114,28 +114,31 @@
                 </div>
             </div>
 
+            
             <!-- Registration Form -->
             <div class="form signup" >
                 <span class="title">Registration</span>
 
-                <form action="#">
+                <form action="../../../../dashboard/admin/code.php" method="POST">
                     <div class="input-field">
-                        <input type="text" placeholder="Enter your name" required />
+                        <input name="name" type="text" placeholder="Enter your name" style="text-transform: none;" required />
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="Enter your email" required />
+                        <input name="email" type="text" placeholder="Enter your email" style="text-transform: none;" required />
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Create a password" required />
+                        <input name="password" type="password" class="password" placeholder="Create a password" style="text-transform: none;" required />
                         <i class="uil uil-lock icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Confirm a password" required />
+                        <input name="confirmPassword" type="password" class="password" placeholder="Confirm a password" style="text-transform: none;" required />
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
+
+                    <h2 class="confirmPassword"></h2>
 
                     <div class="checkbox-text">
                         <div class="checkbox-content">
@@ -147,13 +150,13 @@
                     </div>
 
                     <div class="input-field button">
-                        <input type="button" value="Login Now" />
+                        <input name="signUpBtn" type="submit" value="Sign up Now" />
                     </div>
                 </form>
 
                 <div class="login-signup">
                     <span class="text">
-                        <a href="#" class="text login-link">Login now</a>
+                        <a href="#"  class="text login-link">Login now</a>
                     </span>
                 </div>
             </div>
