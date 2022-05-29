@@ -24,24 +24,22 @@
 
 <body>
     <header>
-        <a href="#" class="logo"><i class="fas fa-hamburger"></i> K O O L</a>
+        <a href="../../../../front_office/index.php" class="logo"><i class="fas fa-hamburger"></i> K O O L</a>
 
         <nav class="navbar">
-            <a class="" href="../../index.html">home</a>
-            <a href="#dishes">dishes</a>
-            <a href="#about">about</a>
-            <a href="#menu">menu</a>
-            <a href="#review">review</a>
-            <a href="#order">order</a>
+            <a class="" href="../../../../front_office/index.php">home</a>
+            <a href="../../../../front_office/index.php">dishes</a>
+            <a href="../../../../front_office/index.php">about</a>
+            
         </nav>
 
         <div class="icons">
             <i class="fas fa-bars" id="menu-bars"></i>
             <!-- <i class="fas fa-search" id="search-icon"></i> -->
 
-            <a href="#" class="fas fa-heart" title="favories"></a>
-            <a href="#" class="fas fa-shopping-cart" title="panier"></a>
-            <a href=""><i class="fas fa-user" title="utilisateur" style="color: #fff; 
+            
+            <a href="../shooping_card/index.php" class="fas fa-shopping-cart" title="panier"></a>
+            <a href="#"><i class="fas fa-user" title="utilisateur" style="color: #fff; 
                   background-color: #ffd310;"></i></a>
         </div>
     </header>
@@ -93,7 +91,7 @@
             </div>
 
             <!-- Registration Form -->
-            <div class="form signup">
+            <div class="form signup" >
                 <span class="title">Registration</span>
 
                 <form action="#">
@@ -130,8 +128,8 @@
                 </form>
 
                 <div class="login-signup">
-                    <span class="text">Not a member?
-                        <a href="#" class="text login-link">Signup now</a>
+                    <span class="text">
+                        <a href="#" class="text login-link">Login now</a>
                     </span>
                 </div>
             </div>

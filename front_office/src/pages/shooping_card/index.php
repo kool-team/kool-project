@@ -27,21 +27,28 @@ $isempty=$_SESSION['iscardempty'];}
         <a href="#" class="logo"><i class="fas fa-hamburger"></i> K O O L</a>
 
         <nav class="navbar">
-            <a class="" href="../../index.html">home</a>
-            <a href="#dishes">dishes</a>
-            <a href="#about">about</a>
-            <a href="#menu">menu</a>
-            <a href="#review">review</a>
-            <a href="#order">order</a>
+            <?php
+                if(isset($_SESSION['id'])){
+                    $a = "../../../../front_office/indexprofil.php";
+                    $b = $a;
+                }
+                else{
+                    $a = "../../../../front_office/index.php";
+                    $b = "../login_registration/login.php";
+                }
+            ?>
+            <a class="" href="<?php echo $a?>">home</a>
+            <a href="<?php echo $a?>">dishes</a>
+            <a href="<?php echo $a?>">about</a>         
         </nav>
 
         <div class="icons">
             <i class="fas fa-bars" id="menu-bars"></i>
             <!-- <i class="fas fa-search" id="search-icon"></i> -->
 
-            <a href="#" class="fas fa-heart" title="favories"></a>
+            
             <a href="#" class="fas fa-shopping-cart" title="panier" style="color: #fff; background-color: #ffd310;"></a>
-            <a href=""><i class="fas fa-user" title="utilisateur"></i></a>
+            <a href="<?php echo $b;?>"><i class="fas fa-user" title="utilisateur"></i></a>
         </div>
     </header>
 
@@ -51,7 +58,8 @@ $isempty=$_SESSION['iscardempty'];}
   padding-bottom: 20px;">
             <div class="Header">
                 <h3 class="Heading">Shopping Cart</h3>
-                <h5 class="Action">Remove all</h5>
+                <a href="removeall.php?product=all"><h5 class="Action">Remove all</h5></a>
+                
             </div>
 
 
@@ -79,7 +87,7 @@ $isempty=$_SESSION['iscardempty'];}
                             
                         </div>
                         <div class="about">
-                            <span class="test">YOUR CARD IS EMPTY GET IT FULL <a href="../../../../front_office/indexprofil.php">here</a></span>
+                            <span class="test">YOUR CARD IS EMPTY GET IT FULL <a href="../../../indexprofil.php">here</a></span>
 
 
 
@@ -112,7 +120,7 @@ $isempty=$_SESSION['iscardempty'];}
                                 <div class="prices">
                                     <div class="amount">'.$quantity*$row['price'].'$</div>
                                     
-                                    <div class="remove"><u>Remove</u></div>
+                                    <div class="remove"><a href="removeall.php?product='.$product_id.'">Remove</a></div>
                                 </div>
                             </div>';
                     $items++;}

@@ -27,22 +27,23 @@ include "../dashboard/admin/database/connect.php";
     <!-- header section starts      -->
 
     <header>
-        <a style="text-decoration: none" href="index.html" class="logo"><i class="fas fa-hamburger"></i> K O O L</a>
+        <a style="text-decoration: none" href="indexprofil.php" class="logo" ><i class="fas fa-hamburger"></i> K O O L</a>
 
-        <nav class="navbar">
+        <nav class="navbar" style="margin-left: 20rem;">
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" class="active"
                 href="#home">home</a>
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#dishes">dishes</a>
 
-            <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');"
-                href="javascript:showcat();" href="#head">categories</a>
+           
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#about">about</a>
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#stat">our stat</a>
-            <a style="text-decoration: none" href="src/pages/shooping_card/index.php" target="_blank"
+            <a style="text-decoration: none ;margin-left: 9rem;" href="src/pages/shooping_card/index.php" 
                 class="fas fa-shopping-cart"></a>
             <!-- <a href="#order">order</a>  -->
+
+            
         </nav>
-        <ul class="nav navbar-nav navbar-right">
+        <!-- <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a href="#" data-toggle="dropdown" class="dropdown-toggle user-action"><img
                         src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="avatar" alt="Avatar">
@@ -54,19 +55,47 @@ include "../dashboard/admin/database/connect.php";
                     <li class="divider"></li>
                     <li><a href="src/pages/login_registration/logout.php/?demo=true"><i
                                 class="material-icons">&#xE8AC;</i> Logout</a></li>
-                </ul>
-                <!-- <div class="dropdown">
-            <button class="btn btn-secondary " type="button" id="dropdownMenuButton" aria-haspopup="true"
-                data-toggle="dropdown" aria-expanded="false">
-                D
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="logout.php/?demo=true">logout</a>
-            </div>
-        </div>
-        </div> -->
+                </ul> -->
+
+                <ul class="navbar-nav ml-auto">
+            
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" style="color: #666;font-size: 1rem;" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <?php
+                        echo $_SESSION['email'];
+                    ?>
+                    <img class="img-profile rounded-circle"
+                        src="../dashboard/admin/img/undraw_profile.svg" style="width:40px;height:40px;">
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                    aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Profile
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Settings
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Activity Log
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="src/pages/login_registration/logout.php/?demo=true" >
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a>
+                </div>
+            </li>
+
+        </ul>
+
+                
+              
     </header>
 
     <!-- header section ends-->
@@ -293,36 +322,32 @@ include "../dashboard/admin/database/connect.php";
     </div>
   </div> -->
     <!-- ends here -->
-    <!-- footer section starts  -->
-
     <section class="footer" style="margin: 18px">
         <hr />
         <div class="box-container">
             <div class="box">
                 <h3>locations</h3>
-                <a href="#">indonesia</a>
-                <a href="#">japan</a>
-                <a href="#">russia</a>
-                <a href="#">USA</a>
-                <a href="#">france</a>
+                <a href="#">Oujda</a>
+                <a href="#">Casablanca</a>
+                <a href="#">Fes</a>
+                <a href="#">Rabat</a>
+                <a href="#">Dakhla</a>
             </div>
 
             <div class="box">
                 <h3>quick links</h3>
                 <a href="#">home</a>
                 <a href="#">dishes</a>
-                <a href="#">about</a>
-                <a href="#">menu</a>
-                <a href="#">stat</a>
+                <a href="#about">about</a>
+                <a href="#stat">stat</a>
             </div>
 
             <div class="box">
                 <h3>contact info</h3>
-                <a href="#">+123-456-7890</a>
-                <a href="#">+111-222-3333</a>
-                <a href="#">KOOL-TEAM@gmail.com</a>
-                <a href="#">KOOL-TEAM@gmail.com</a>
-                <a href="#">City - Country - 000000</a>
+                <a href="tel:+123-456-7890">+123-456-7890</a>
+                <a href="tel:+111-222-3333">+111-222-3333</a>
+                <a href="mailto:KOOL-TEAM@gmail.com">KOOL-TEAM@gmail.com</a>
+                <a href="#">Oujda - Morocco - 60000</a>
             </div>
 
             <div class="box">
@@ -340,8 +365,6 @@ include "../dashboard/admin/database/connect.php";
         </div>
     </section>
     <br /><br />
-
-    <!-- footer section ends -->
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

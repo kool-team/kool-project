@@ -31,8 +31,7 @@
                 href="#home">home</a>
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#dishes">dishes</a>
 
-            <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');"
-                href="javascript:showcat();" href="#head">categories</a>
+           
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#about">about</a>
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" class="5 inactive"
                 href="#stat">our stat</a>
@@ -42,9 +41,9 @@
         <div class="icons">
             <i class="fas fa-bars" id="menu-bars"></i>
             
-            <a style="text-decoration: none" href="src/pages/shooping_card/index.php" target="_blank"
+            <a style="text-decoration: none" href="src/pages/shooping_card/index.php" 
                 class="fas fa-shopping-cart"></a>
-            <a style="text-decoration: none" href="src/pages/login_registration/login.php" target="_blank"><i
+            <a style="text-decoration: none" href="src/pages/login_registration/login.php" ><i
                     class="fas fa-user" title="utilisateur"></i></a>
         </div>
     </header>
@@ -204,7 +203,7 @@
                         <span>24/7 service</span>
                     </div>
                 </div>
-                <a href="#" class="btn">learn more</a>
+                <a href="#about" class="btn">learn more</a>
             </div>
         </div>
     </section>
@@ -280,29 +279,27 @@
         <div class="box-container">
             <div class="box">
                 <h3>locations</h3>
-                <a href="#">indonesia</a>
-                <a href="#">japan</a>
-                <a href="#">russia</a>
-                <a href="#">USA</a>
-                <a href="#">france</a>
+                <a href="#">Oujda</a>
+                <a href="#">Casablanca</a>
+                <a href="#">Fes</a>
+                <a href="#">Rabat</a>
+                <a href="#">Dakhla</a>
             </div>
 
             <div class="box">
                 <h3>quick links</h3>
                 <a href="#">home</a>
                 <a href="#">dishes</a>
-                <a href="#">about</a>
-                <a href="#">menu</a>
-                <a href="#">stat</a>
+                <a href="#about">about</a>
+                <a href="#stat">stat</a>
             </div>
 
             <div class="box">
                 <h3>contact info</h3>
-                <a href="#">+123-456-7890</a>
-                <a href="#">+111-222-3333</a>
-                <a href="#">KOOL-TEAM@gmail.com</a>
-                <a href="#">KOOL-TEAM@gmail.com</a>
-                <a href="#">City - Country - 000000</a>
+                <a href="tel:+123-456-7890">+123-456-7890</a>
+                <a href="tel:+123-456-7890">+123-456-7890</a>
+                <a href="mailto:KOOL-TEAM@gmail.com">KOOL-TEAM@gmail.com</a>
+                <a href="#">Oujda - Morocco - 60000</a>
             </div>
 
             <div class="box">
