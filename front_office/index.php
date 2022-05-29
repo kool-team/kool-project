@@ -31,7 +31,7 @@
                 href="#home">home</a>
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#dishes">dishes</a>
 
-           
+
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" href="#about">about</a>
             <a style="text-decoration: none" onclick="active();$(this).toggleClass('active');" class="5 inactive"
                 href="#stat">our stat</a>
@@ -40,11 +40,10 @@
 
         <div class="icons">
             <i class="fas fa-bars" id="menu-bars"></i>
-            
-            <a style="text-decoration: none" href="src/pages/shooping_card/index.php" 
-                class="fas fa-shopping-cart"></a>
-            <a style="text-decoration: none" href="src/pages/login_registration/login.php" ><i
-                    class="fas fa-user" title="utilisateur"></i></a>
+
+            <a style="text-decoration: none" href="src/pages/shooping_card/index.php" class="fas fa-shopping-cart"></a>
+            <a style="text-decoration: none" href="src/pages/login_registration/login.php"><i class="fas fa-user"
+                    title="utilisateur"></i></a>
         </div>
     </header>
 
@@ -126,6 +125,14 @@
     function f(a) {
         document.getElementById('temp').innerHTML = a;
         console.log(a);
+        Swal.fire({
+            title: 'Sweet!',
+            text: 'Modal with a custom image.',
+            imageUrl: 'https://unsplash.it/400/200',
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: 'Custom image',
+        })
         return;
     }
     </script>
@@ -154,14 +161,15 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-                <button style="text-decoration: none" class="btn" onclick="javascript:f(<?php echo $row['name']?>)">add to
+                <button style="text-decoration: none" class="btn" onclick="javascript:f(<?php echo $row['name']?>)">add
+                    to
                     cart</button>
                 <span style="position: relative; top: 10px"><?php echo $row['price'];?>$</span>
-            </div> 
+            </div>
             <?php
                 }
             ?>
-            
+
         </div>
     </section>
 
@@ -319,7 +327,7 @@
     <br /><br />
 
     <!-- footer section ends -->
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
