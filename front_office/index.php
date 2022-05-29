@@ -126,8 +126,8 @@
         document.getElementById('temp').innerHTML = a;
         console.log(a);
         Swal.fire({
-            title: 'Sweet!',
-            text: 'Modal with a custom image.',
+            title: 'Ooops!',
+            text: 'Should get connected .',
             imageUrl: 'https://unsplash.it/400/200',
             imageWidth: 400,
             imageHeight: 200,
@@ -161,7 +161,7 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-                <button style="text-decoration: none" class="btn" onclick="javascript:f(<?php echo $row['name']?>)">add
+                <button style="text-decoration: none" class="btn" onclick="f('<?php echo $row['name']?>')">add
                     to
                     cart</button>
                 <span style="position: relative; top: 10px"><?php echo $row['price'];?>$</span>
