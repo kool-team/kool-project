@@ -7,7 +7,7 @@ $isempty=$_SESSION['iscardempty'];}
 <html>
 
 <head>
-    
+    <script src="Gpay/Gpay.js"></script>
     <link rel="stylesheet" type="text/css" href="./style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
@@ -39,31 +39,33 @@ $isempty=$_SESSION['iscardempty'];}
             ?>
             <a class="" href="<?php echo $a?>">home</a>
             <a href="<?php echo $a?>">dishes</a>
-            <a href="<?php echo $a?>">about</a>         
+            <a href="<?php echo $a?>">about</a>
         </nav>
 
         <div class="icons">
             <i class="fas fa-bars" id="menu-bars"></i>
             <!-- <i class="fas fa-search" id="search-icon"></i> -->
 
-            
+
             <a href="#" class="fas fa-shopping-cart" title="panier" style="color: #fff; background-color: #ffd310;"></a>
             <a href="<?php echo $b;?>"><i class="fas fa-user" title="utilisateur"></i></a>
         </div>
     </header>
 
-    
-        <div class="CartContainer" style="margin-top:85px ; margin-top: 85px;
+
+    <div class="CartContainer" style="margin-top:85px ; margin-top: 85px;
   overflow-y: auto;
   padding-bottom: 20px;">
-            <div class="Header">
-                <h3 class="Heading">Shopping Cart</h3>
-                <a href="removeall.php?product=all"><h5 class="Action">Remove all</h5></a>
-                
-            </div>
+        <div class="Header">
+            <h3 class="Heading">Shopping Cart</h3>
+            <a href="removeall.php?product=all">
+                <h5 class="Action">Remove all</h5>
+            </a>
+
+        </div>
 
 
-            <?php 
+        <?php 
             
 			$con = new mysqli('localhost','root','');
 			$dbconfig = mysqli_select_db($con,'kool_db');
@@ -137,15 +139,29 @@ $isempty=$_SESSION['iscardempty'];}
                                 <div class="total-amount">'.$somme .'$</div>
                             </div>
                         
-                            <form action="check.php" method="POST">
-                                <button class="button" type="submit" name="checkout">Checkout</button>
+                            <form id="container" action="check.php" method="post"></form>
+                            <script async
+                              src="https://pay.google.com/gp/p/js/pay.js"
+                              onload="onGooglePayLoaded()"></script>
+
+                            <form class="paypal" action="paypal/payments.php" method="post" id="paypal_form">
+                            <input type="hidden" name="cmd" value="_xclick" />
+                            <input type="hidden" name="no_note" value="1" />
+                            <input type="hidden" name="lc" value="UK" />
+                            <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
+                            <input type="hidden" name="first_name" value="Customer\'s First Name" />
+                            <input type="hidden" name="last_name" value="Customer\'s Last Name" />
+                            <input type="hidden" name="payer_email" value="customer@example.com" />
+                            <input type="hidden" name="item_number" value="123456" />
+                            <button type="submit" name="submit"  style="width:240px; height:40px; background-color:lightskyblue;font-weight:bold;border-radius: 4px;"><img src="paypal.png" style="height:20px;width:20px">  Buy with PayPal</button>
                             </form>
+
                         </div>'
                         ;}}?>
-        </div>
-                        
-        
-            <!-- <div class="Cart-Items pad">
+    </div>
+
+
+    <!-- <div class="Cart-Items pad">
    	   	  <div class="image-box">
    	   	  	<img src="images/grapes.png" style={{ height="120px" }} />
    	   	  </div>
@@ -165,6 +181,6 @@ $isempty=$_SESSION['iscardempty'];}
    	   	  </div>
    	   </div> -->
 
-    </body>
+</body>
 
 </html>
