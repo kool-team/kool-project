@@ -16,6 +16,7 @@
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="style-login.css" />
     <link rel="stylesheet" href="../../css/style.css" />
+    <script src="../../js/header.js"></script>
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
@@ -23,7 +24,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="desk">
         <a href="../../../../front_office/index.php" class="logo"><i class="fas fa-hamburger"></i> K O O L</a>
 
         <nav class="navbar">
@@ -43,6 +44,29 @@
                   background-color: #ffd310;"></i></a>
         </div>
     </header>
+
+    <header class="mobile">
+      <!-- Simulate a smartphone / tablet -->
+      <div class="mobile-container">
+        <!-- Top Navigation Menu -->
+        <div class="topnav">
+          <a href="#" class="logo"><i class="fas fa-hamburger"></i> K O O L</a>
+          <div id="myLinks">
+            <a class="" href="../../../../front_office/index.php">home</a>
+            <a href="../../../../front_office/index.php">dishes</a>
+            <a href="../../../../front_office/index.php">about</a>
+            <a href="../shooping_card/index.php" class="fas fa-shopping-cart" title="panier">cart</a>
+          </div>
+          <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
+
+        <!-- End smartphone / tablet look -->
+      </div>
+    </header>
+
+    <!-- header section ends-->
 
     <div class="container my-5">
         <div class="forms">

@@ -21,12 +21,13 @@ include "../dashboard/admin/database/connect.php";
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="src/css/style.css">
+    <script src="src/js/header.js"></script>
 </head>
 
 <body>
     <!-- header section starts      -->
 
-    <header>
+    <header class="desk">
         <a style="text-decoration: none" href="indexprofil.php" class="logo"><i class="fas fa-hamburger"></i> K O O
             L</a>
 
@@ -96,6 +97,28 @@ include "../dashboard/admin/database/connect.php";
 
 
 
+    </header>
+
+    <header class="mobile">
+      <!-- Simulate a smartphone / tablet -->
+      <div class="mobile-container">
+        <!-- Top Navigation Menu -->
+        <div class="topnav">
+          <a href="#" class="logo"><i class="fas fa-hamburger"></i> K O O L</a>
+          <div id="myLinks">
+            <a class="active" href="#home">home</a>
+            <a  href="#dishes">dishes</a>
+            <a  href="#about">about</a>
+            <a  href="#stat">our stat</a>
+            <a href="../shooping_card/index.php" class="fas fa-shopping-cart" title="panier">cart</a>
+          </div>
+          <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
+
+        <!-- End smartphone / tablet look -->
+      </div>
     </header>
 
     <!-- header section ends-->
